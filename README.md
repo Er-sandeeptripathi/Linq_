@@ -132,7 +132,7 @@ in employee class
 
 
 Filtering operator
-
+----------------------
  Filtering is the process of selecting a subset of elements from a 
  collection based on a specified condition. In LINQ, filtering is typically done using the
   Where operator. The Where operator takes a predicate (a function that returns true or false)
@@ -213,6 +213,27 @@ namespace Linq_
 
 
 *fatching the  student hwo have no any Technology
+employeeclass
+--------------------------------------------------
+using System.Collections.Generic;
+using System.ComponentModel.Design;
+
+namespace Linq_
+{
+    internal class employee
+    {
+        public int id { get; set; }
+        public string name  { get; set; }
+        public  string Email { get; set; }
+        public List<techs> programming{ get; set; }
+    }
+    public class techs
+    {
+        public string Technology { get; set; }
+    }
+}
+
+------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
