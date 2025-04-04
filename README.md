@@ -132,3 +132,135 @@ in employee class
 
 
 Filtering operator
+
+ Filtering is the process of selecting a subset of elements from a 
+ collection based on a specified condition. In LINQ, filtering is typically done using the
+  Where operator. The Where operator takes a predicate (a function that returns true or false)
+   and returns a new collection containing only the elements that satisfy the predicate.
+
+   We can wrire one more condition based on the requirements
+
+   example
+    student having number f greater than 50 and less than 80
+    emplyee having salary less than 50k
+     list of student having attendance more than 90% and marks MORE THAN 80% 
+
+
+
+     where operator
+      where come under filtering operator
+      where operator is used to filter the data based on the condition 
+      where operator is used in query syntax and method syntax
+      condition can be written using following symbols
+    
+    == equal to
+    != not equal to 
+    > greater than
+    < less than
+    >= greater than or equal to
+    <= less than or equal to
+    && and
+    || or
+    ! not
+    ? : conditional operator
+    
+
+    example
+
+var datasourec = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+var Querysyntax = (from number in datasourec
+                  where number > 5
+                  select number).ToList();
+
+var MethodQuery = datasourec.Where(x => x > 5).ToList();
+foreach (var item in Querysyntax)
+{
+    Console.WriteLine(item);
+}
+
+example -2 using string
+
+ var datasourec = new List<string>() {"ram","Shaym","Suresh","Rakesh","Rajesh","Mukesh","Sukhes"};
+
+ var querySyntax = (from name in datasourec where name.Length == 3 select name).ToList();
+
+ var MethodQuery = datasourec.Where(emp => emp.Length == 3||emp.Length<=5).ToList();
+ foreach (var item in MethodQuery)
+ {
+     Console.WriteLine(item);
+ }
+more complex example using string
+
+ using System.Collections.Generic;
+using System.ComponentModel.Design;
+
+namespace Linq_
+{
+    internal class employee
+    {
+        public int id { get; set; }
+        public string name  { get; set; }
+        public  string Email { get; set; }
+        public List<techs> programming{ get; set; }
+    }
+    public class techs
+    {
+        public string Technology { get; set; }
+    }
+}
+
+
+
+*fatching the  student hwo have no any Technology
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Linq_
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var dataSource = new List<employee>
+            {
+                new employee(){id=1, name="sandeep", Email="sandeeptripathi1212.s@gmail.com", programming=new List<techs>{ new techs() { Technology="C#" } } },
+                new employee(){id=2, name="john", Email="john.doe@example.com", programming=new List<techs>{ new techs() { Technology="Java" } } },
+                new employee(){id=3, name="alice", Email="alice.smith@example.com", programming=new List<techs>{ new techs() { Technology="Python" } } },
+                new employee(){id=4, name="bob", Email="bob.jones@example.com", programming=new List<techs>{ new techs() { Technology="JavaScript" } } },
+                new employee(){id=5, name="carol", Email="carol.white@example.com", programming=new List<techs>{ new techs() { Technology="Ruby" } } },
+                new employee(){id=6, name="david", Email="david.brown@example.com", programming=new List<techs>{ new techs() { Technology="Go" } } },
+                new employee(){id=7, name="eva", Email="eva.green@example.com", programming=new List<techs>{ new techs() { Technology="Swift" } } },
+                new employee(){id=8, name="frank", Email="frank.miller@example.com", programming=new List<techs>{ new techs() { Technology="Kotlin" } } },
+                new employee(){id=9, name="grace", Email="grace.moore@example.com", programming=new List<techs>{ new techs() { Technology="PHP" } } },
+                new employee(){id=10, name="hank", Email="hank.taylor@example.com", programming=new List<techs>{ new techs() { Technology="TypeScript" } } },
+                new employee(){id=11, name="sandeep", Email="sandeeptripathi1212.s@gmail.com"},
+                new employee(){id=12, name="tanu", Email="tanu122.s@gmail.com"},
+                new employee(){id=13, name="Anurag", Email="Anurag.s@gmail.com"}
+            };
+
+            var Querysynt = (from std in dataSource
+                             where std.programming == null || std.programming.Count == 0
+                             select std).ToList();
+
+            // Printing out the result
+            foreach (var item in Querysynt)
+            {
+                Console.WriteLine($"Id: {item.id}, Name: {item.name}, Email: {item.Email}");
+            }
+
+            Console.ReadKey();
+        }
+    }
+
+    
+}
+
+
+
+
+
+
+
