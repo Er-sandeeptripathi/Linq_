@@ -1,3 +1,5 @@
+
+
 Linq 
 
 class-1
@@ -132,7 +134,7 @@ in employee class
 
 
 Filtering operator
-----------------------
+
  Filtering is the process of selecting a subset of elements from a 
  collection based on a specified condition. In LINQ, filtering is typically done using the
   Where operator. The Where operator takes a predicate (a function that returns true or false)
@@ -213,27 +215,6 @@ namespace Linq_
 
 
 *fatching the  student hwo have no any Technology
-employeeclass
---------------------------------------------------
-using System.Collections.Generic;
-using System.ComponentModel.Design;
-
-namespace Linq_
-{
-    internal class employee
-    {
-        public int id { get; set; }
-        public string name  { get; set; }
-        public  string Email { get; set; }
-        public List<techs> programming{ get; set; }
-    }
-    public class techs
-    {
-        public string Technology { get; set; }
-    }
-}
-
-------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -278,6 +259,83 @@ namespace Linq_
 
     
 }
+
+class-
+ ofType operator
+---------------------
+we can used ofType operator for filter the data based on their type like string,int 
+ofType is used as a Generic method to filter the data based on any type
+
+ 
+ example
+var datasource = new List<object>() { "sandeep","Ramesh","ramji",1,2,3,4,5,6};
+
+ var method = datasource.OfType<int>().ToList();
+
+ in Query syntax we used {is} for getting the their type 
+
+ var Quey = (from x in datasource where x is string select x).ToList();
+
+ Question
+ -----
+ fetch the record how have type of string and Length==3
+
+ method syntax
+ ----------------
+var methodQuery = datasource.OfType<string>().Where(x => x.Length== 7).ToList();
+
+Sorting operator 
+---------------------
+method
+1. OrderBy
+2. OrderByDesending
+3. ThenBy
+4. ThenByDesending
+5. reverse
+
+
+OrderBy
+-------------
+* OrderBy method is used to sort  data in ascending Order
+* We can apply OrderBy method on any data type.
+
+
+static void Main(string[] args)
+{
+
+    var datasource = new List<int>() { 5,12,13,1,7,53,100};
+
+    var Query = (from num in datasource
+                 orderby num
+                 select num).ToList();
+
+    foreach (var item in Query)
+    {
+        Console.WriteLine(item);   
+    }
+    var Method = datasource.OrderBy(x => x).ToList();
+
+    foreach (var item in Query)
+    {
+        Console.WriteLine(item);
+    }
+    Console.ReadKey();
+}
+
+we will used where condition befor orderby condition
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
