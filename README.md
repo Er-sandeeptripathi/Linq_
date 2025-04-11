@@ -1,3 +1,36 @@
+ Controller-code
+ 
+ public JsonResult getCity(int StateCode)
+ {
+
+     var data = db.CityMasters.Where(x => x.StateCode == StateCode).ToList();
+     return Json(data);
+ }
+
+view code 
+--------------
+<script>
+    $(document).ready(function(){
+
+        $("#StateCode").change(function(){
+            var cid =$(this).val().trim();
+            var obj={StateCode:cid}
+            $.getJSON("/Home/getCity",obj,function(data){
+                var items = "<option>Select </option>";
+                console.log(data);
+                $.each(data,function(i,st){
+                    items = items +"<option value='"+st.cityCode+"'>"+st.cityName+"</option>"
+                })
+                console.log(items);
+                $("#City_code").html(items);
+            })
+        })
+    })
+
+</script>
+
+
+
 
 
 Linq 
@@ -324,8 +357,81 @@ static void Main(string[] args)
 
 we will used where condition befor orderby condition
 
+OrderBy in string
+
+ var QuerySy = (from name in datasourecString where name.Length==5 orderby name select name).ToList();
+             var Methodsy = datasourecString.Where(x => x.Length >6).OrderBy(x => x).ToList();
+
+         Ordering the data by elements name
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Linq_
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            var Datasourec = new List<employee>()
+            {
+                new employee()
+                {
+                    id=1,
+                    name="ram",
+                    Email="Ram@123gmail.com"
+                },
+                 new employee()
+                {
+                    id=2,
+                    name="shyam",
+                    Email="shyam@123gmail.com"
+                }, new employee()
+                {
+                    id=3,
+                    name="Amit",
+                    Email="Amit@123gmail.com"
+                },
+                  new employee()
+                {
+                    id=4,
+                    name="Deeksha",
+                    Email="Deeksha@123gmail.com"
+                }
+
+            };
+
+            var Querysyntax = (from data in Datasourec orderby data.name select data).ToList();
+
+                var MethodQuery = Datasourec.Where(x=>x.id>).OrderBy(x => x.name).ToList();           
+
+            Console.ReadKey();
+        }
+    }
 
 
+}
+
+         var Query=(from data in dataSource   orderby data.name select data).ToList();
+         var Method=dataSource.where(data=>data.id>2).orderby(data=>data.name).ToList();
+
+
+
+orderby descending operator
+----------------------------
+
+var datasourceInt = new List<int>() { 5, 12, 13, 1, 7, 53, 100 };
+
+var method=dataSource.OrderByDescending(data=>data).ToList();
+var method=dataSource.where(data=>data>10).OrderByDescending(data=>data).ToList();
+
+
+in Query syntax we dont have OrderByDescending method 
+Then i used first orderby by and after used  Descending keyword
+
+var QuerySyntax = (from data in datasourceInt where data>10 orderby data descending select data).ToList();
 
 
 
